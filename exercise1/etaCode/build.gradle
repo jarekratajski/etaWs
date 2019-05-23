@@ -1,0 +1,7 @@
+plugins {
+    id 'com.typelead.eta'
+}
+
+dependencies {
+    compile eta('array:0.5.0.0')
+}

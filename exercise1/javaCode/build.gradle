@@ -1,0 +1,13 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+application {
+    applicationDefaultJvmArgs = ['-Xss512m']
+    mainClassName = 'pl.setblack.etalife.LifeWindow'
+}
+
+dependencies {
+    compile project(':etaCode')
+}
