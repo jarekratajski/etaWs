@@ -33,8 +33,12 @@ After installation check installed versions
 
 Later we will install eta  from source.
 
+# Exercise1 
 
-#  simple eta hello world
+Compilation of simple eta files.
+
+
+## Exercise 1a  simple eta hello world
 
 
 Go to folder exercise1 and try to compile project.
@@ -62,10 +66,10 @@ Run full java module.
 Make some experiment. Have fun.
 
 
-# qsort example
+# Exercise 1b qsort example
 
 lets play with sorting:
-create file Ssort.hs with the content below:
+create file Qsort.hs with the content below:
 ```
 quicksort [] = []
 quicksort (x:xs) = quicksort left ++ [x] ++ quicksort right
@@ -88,15 +92,19 @@ main = do
 `> java -jar RunQsort.jar`
 
 
-## advanced
+## advanced topics
 
 - do You have your own haskell project?
 - can You implement *real* quick sort?  
 
 
-# java eta interoperability
+# Exercise 2 
 
-clone git project `https://github.com/setblackWs/etaLife.git`
+Java eta interoperability
+
+## Game of life
+
+Please go to exercise2 folder.
 
 go to main folder
 
