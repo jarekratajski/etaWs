@@ -41,7 +41,7 @@ Compilation of simple eta files.
 ## Exercise 1a  simple eta hello world
 
 
-Go to folder exercise1 and try to compile project.
+Go to folder [exercise1](../exercise1) and try to compile project.
 
 File  Hello.hs should contain lines as below:
 
