@@ -5,3 +5,9 @@ plugins {
 dependencies {
     compile eta('array:0.5.0.0')
 }
+
+compileEta {
+    options {
+        args = ['-Wall', '-O2']
+    }
+}

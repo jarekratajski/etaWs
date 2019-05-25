@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+    //id 'org.openjfx.javafxplugin' version '0.0.7'
+    id 'application'
+}
+
+
+//javafx {
+//    version = "12.0.1"
+//    modules = ['javafx.controls']
+//}
+
+application {
+    applicationDefaultJvmArgs = ['-Xss512m','-Xmx2g', '-XX:+UseG1GC']
+    mainClassName = 'pl.setblack.etalife.LifeWindow'
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/org.openjfx/javafx-controls
+    compile group: 'org.openjfx', name: 'javafx-controls', version: '12'
+
+    compile project(':etaCode')
+}

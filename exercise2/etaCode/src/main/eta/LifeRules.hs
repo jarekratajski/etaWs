@@ -23,7 +23,8 @@ countNeighbours plane x y = foldl (+) 0 allValues
       where
          rows = [y-1, y, y+1]
          cells = [x-1, x, x+1]
-         valuesForY y1 =  (\x -> getCellValue plane x y1 ) <$> cells
+         valuesForY y1 =  (\x -> aRow y1 $  x ) <$> cells
+         aRow y1 = getCellValue plane y1
          allValues =  rows >>= valuesForY
 
 processRow::Plane->Row->Int->Row
@@ -41,7 +42,7 @@ decide _ _ = Dead
 
 -- some utility function You can use (you do not have to)
 getCellValue::Plane->Int->Int->Int
-getCellValue plane x y
+getCellValue plane  y x
    | (y >= minBound && y <=maxBound ) = getCellInRow ( plane ! y ) x
    | otherwise = 0
       where
