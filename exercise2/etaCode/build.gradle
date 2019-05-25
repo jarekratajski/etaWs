@@ -1,5 +1,6 @@
 plugins {
     id 'com.typelead.eta'
+    id 'application'
 }
 
 dependencies {

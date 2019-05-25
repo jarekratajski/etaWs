@@ -55,7 +55,7 @@ getCellInRow row x
    | (x >= minBound && x <=maxBound ) = cellValue $ row ! x
    | otherwise = 0
    where
-         minBound = fst myBounexerds
+         minBound = fst myBounds
          maxBound = snd myBounds
          myBounds = bounds row
 
