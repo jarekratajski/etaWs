@@ -37,7 +37,7 @@ Later we will install eta  from source.
 #  simple eta hello world
 
 
-Go to folder exercise1 and try to compile project.
+Go to folder [exercise1](../exercise1) and try to compile project.
 
 File  Hello.hs should contain lines as below:
 
@@ -94,17 +94,8 @@ main = do
 - can You implement *real* quick sort?  
 
 
-# java eta interoperability
 
-clone git project `https://github.com/setblackWs/etaLife.git`
-
-go to main folder
-
-`> ./gradlew :frame:run`
-
-If You get error about missing javafx library you have to install it (on ubuntu sudo apt-get install openjfx)
-
-## exercise
+# exercise2
 
 We are doing 
 [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)
