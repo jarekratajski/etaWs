@@ -108,13 +108,13 @@ Please go to exercise2 folder.
 
 go to main folder
 
-`> ./gradlew :frame:run`
+`> ./gradlew run`
 
-If You get error about missing javafx library you have to install it (on ubuntu sudo apt-get install openjfx)
+If You get an error about missing javafx library you have to install it (on ubuntu sudo apt-get install openjfx)
 
-## exercise
 
-We are doing 
+Check article:
+
 [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)
 
 If You click on **next** button of **auto**  nothing happens.
