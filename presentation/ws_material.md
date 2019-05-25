@@ -66,7 +66,7 @@ Run full java module.
 Make some experiment. Have fun.
 
 
-# Exercise 1b qsort example
+## Exercise 1b qsort example
 
 lets play with sorting:
 create file Qsort.hs with the content below:
@@ -98,7 +98,7 @@ main = do
 - can You implement *real* quick sort?  
 
 
-# Exercise 2 
+# Exercise 2 (not ready)
 
 Java eta interoperability
 
