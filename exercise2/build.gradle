@@ -1,12 +1,19 @@
 plugins {
     id 'com.typelead.eta' version '0.8.0'
+//    id 'org.openjfx.javafxplugin' version '0.0.7'
     //id 'application'
 }
+
+
 
 allprojects {
     repositories {
         mavenCentral()
     }
+//    javafx {
+//        version = "12"
+//        modules = [ 'javafx.controls' ]
+//    }
 }
 
 eta {
