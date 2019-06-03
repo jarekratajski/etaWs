@@ -1,3 +1,4 @@
+{-# LANGUAGE BangPatterns #-}
 module LifeRules where
 
 -- basic definitions
@@ -12,7 +13,7 @@ type Plane = Array Int Row
 
 ---  improve this solution according to Conway's Game of Life rules
 nextGeneration::Plane->Plane
-nextGeneration plane =   array (bounds plane) newRows
+nextGeneration !plane =   array (bounds plane) newRows
       where
             rows = assocs plane
             newRows = (\(y,row) -> (y, processRow plane row y)   ) <$> rows

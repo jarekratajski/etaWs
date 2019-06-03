@@ -1,3 +1,4 @@
+{-# LANGUAGE BangPatterns #-}
 module LifeJ where
 
 import LifeRules
@@ -53,7 +54,7 @@ setCellXP state x y color = do
 -- make new generation
 
 newStateXP::GOLState -> IO GOLState
-newStateXP state =  ( deRefStablePtr state) >>= (newStablePtr . nextGeneration)
+newStateXP !state =  ( deRefStablePtr state) >>= (newStablePtr . nextGeneration)
 
 -- free previous state (otherwise it fills memory)
 freeStateXP::GOLState->IO ()

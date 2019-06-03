@@ -2,9 +2,8 @@ plugins {
     id 'java'
 //    id 'org.openjfx.javafxplugin'
     id 'application'
+    id "me.champeau.gradle.jmh" version "0.4.8"
 }
-
-
 
 
 application {
@@ -16,7 +15,8 @@ application {
             '-XX:+LogCompilation' ,
             '-XX:+PrintAssembly']
 
-    mainClassName = 'pl.setblack.etalife.LifeWindow'
+    mainClassName = 'pl.setblack.etalife.LifeTest'
+
 }
 
 dependencies {
@@ -36,8 +36,9 @@ task customFatJar(type: Jar) {
 }
 
 
+// java 12
+/*
 compileJava {
-  //  inputs.property("moduleName", moduleName)
     doFirst {
         options.compilerArgs = [
                 '--module-path', '/opt/java/jfx/javafx-sdk-11.0.2/lib',
@@ -50,6 +51,10 @@ compileJava {
         //classpath = files()
     }
 }
+*/
+ 
+
+
 
 //compileTestJava {
 //    inputs.property("moduleName", moduleName)
@@ -72,44 +77,48 @@ compileJava {
 run {
     doFirst {
         jvmArgs = [
-                '--module-path', '/opt/java/jfx/javafx-sdk-11.0.2/lib',
-                '--add-modules', 'javafx.controls',
-                '--add-modules', 'javafx.fxml',
-                '--add-modules', 'javafx.web',
-                '--add-modules', 'javafx.graphics',
-                '--add-modules', 'javafx.media',
+//                '--module-path', '/opt/java/jfx/javafx-sdk-11.0.2/lib',
+//                '--add-modules', 'javafx.controls',
+//                '--add-modules', 'javafx.fxml',
+//                '--add-modules', 'javafx.web',
+//                '--add-modules', 'javafx.graphics',
+//                '--add-modules', 'javafx.media',
                 '-Djava.library.path=/opt/java/tools',
                 '-Xss512m',
-                '-Xmx4g',
-                '-XX:+UseG1GC',
-                '-XX:+PrintCompilation',
+                '-Xmx1g' ,
+//                '-Xmx4g',
+//                '-XX:+UseG1GC',
+  //              '-XX:+PrintCompilation',
 
                 '-Xshare:off',
-
-                '-XX:+UnlockExperimentalVMOptions',
-                '-XX:+EnableJVMCI', '-XX:+UseJVMCICompiler'
+//graal
+//                '-XX:+UnlockExperimentalVMOptions',
+//                '-XX:+EnableJVMCI', '-XX:+UseJVMCICompiler'
 //                '-XX:+UseG1GC' ,
 //                '-XX:+UnlockDiagnosticVMOptions' ,
 //                '-XX:+TraceClassLoading',
 //                '-XX:+LogCompilation' ,
 //                '-XX:+PrintAssembly'
         ]
+        standardInput = System.in
     }
 }
 
 
+jmh {
+    jvmArgs =[ '-Xss512m',
+            '-Xms10g',
+    '-Xmx10g'
+    //,'-verbose:gc'
+     //       ,   '-XX:+UnlockExperimentalVMOptions',
+     //       '-XX:+EnableJVMCI', '-XX:+UseJVMCICompiler'
+    ]
+    warmup = '1s'
+    forceGC = true
+    iterations = 4
+    fork = 3
+    timeOnIteration = '3s'
+}
 
-//test {
-//    useJUnitPlatform()
-//
-//    doFirst {
-//        jvmArgs = [
-//                '--module-path', classpath.asPath,
-//                '--add-modules', 'javafx.controls',
-//                '--add-modules', 'javafx.fxml',
-//                '--add-modules', 'javafx.web',
-//                '--add-modules', 'javafx.graphics',
-//                '--add-modules', 'javafx.media'
-//        ]
-//    }
-//}
+
+

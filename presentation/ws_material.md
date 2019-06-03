@@ -92,13 +92,43 @@ main = do
 `> java -jar RunQsort.jar`
 
 
+## etlas
+
+create file hello.cabal
+
+```
+name:                 hello-hs
+version:              0.1.0.0
+author:               jarekratajski
+maintainer:           jratajski@gmail.com
+build-type:           Simple
+cabal-version:        >=1.10
+
+executable hello-hs
+  main-is:              Hello.hs
+  build-depends:       base >= 4.7 && < 5
+  hs-source-dirs:       .
+  default-language:  Haskell2010
+
+```
+
+run
+`etlas build`
+
+`etlas run`
+
+
+# create cabal/etlas file for Qsort
+
+
+
 ## advanced topics
 
 - do You have your own haskell project?
-- can You implement *real* quick sort?  
+- can You implement a *real* quick sort? 
 
 
-# Exercise 2 (not ready)
+# Exercise 2
 
 Java eta interoperability
 
