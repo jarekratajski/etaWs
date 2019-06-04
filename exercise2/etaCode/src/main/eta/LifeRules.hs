@@ -1,8 +1,6 @@
 {-# LANGUAGE BangPatterns #-}
 module LifeRules where
 
--- basic definitions
--- keep them
 
 import Data.Array
 import Data.Maybe

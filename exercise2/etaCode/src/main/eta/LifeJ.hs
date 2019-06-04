@@ -56,7 +56,6 @@ setCellXP state x y color = do
 newStateXP::GOLState -> IO GOLState
 newStateXP !state =  ( deRefStablePtr state) >>= (newStablePtr . nextGeneration)
 
--- free previous state (otherwise it fills memory)
 freeStateXP::GOLState->IO ()
 freeStateXP state = freeStablePtr state
 
