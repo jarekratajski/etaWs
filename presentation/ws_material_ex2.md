@@ -60,7 +60,7 @@ Hint:
 Use pattern matching
 `decide Alive 3 = Alive`
 says that Alive cell that has 2 more neighbours (3 including itself) - will be alive in next generation.
-```haskell
+
 
 
 Good implementation of nextGeneration is like:
