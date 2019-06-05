@@ -22,7 +22,7 @@ public class LifeTest {
         while (true) {
             int statePointer = initPlane(logicalWidth, logicalHeight);
             System.out.println("ptr:" + statePointer);
-            for (int i = 0; i < 10; i++) {et
+            for (int i = 0; i < 10; i++) {
 
                 int prevState = statePointer;
                 statePointer = LifeJ.newState(statePointer);

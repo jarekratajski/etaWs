@@ -1,8 +1,6 @@
 {-# LANGUAGE BangPatterns #-}
 module LifeRules where
 
-
-
 import Data.Array
 import Data.Maybe
 
@@ -10,12 +8,14 @@ data Cell = Dead | Alive
 type Row = Array Int Cell
 type Plane = Array Int Row
 
----  improve this solution according to Conway's Game of Life rules
+-- tell if a cell of a given state (Dead|Alive) is Dead or ALive in next generation (having X neighbours  - a cell is included)
+decide::Cell->Int->Cell
+decide _ _ = Dead
+
+
+-- create next Plane (game state)
 nextGeneration::Plane->Plane
-nextGeneration !plane =   array (bounds plane) newRows
-      where
-            rows = assocs plane
-            newRows = (\(y,row) -> (y, processRow plane row y)   ) <$> rows
+nextGeneration !plane =  plane  -- TODO this is obviously wrong
 
 
 countNeighbours::Plane->Int->Int->Int
@@ -33,11 +33,6 @@ processRow plane row y = array (bounds row) neighbours
             neighbours = ( \(x, cell) -> (x, decide cell (countNeighbours plane x y)) ) <$> cells
 
 
-decide::Cell->Int->Cell
-decide Dead 3 = Alive
-decide Alive 3 = Alive
-decide Alive 4 = Alive
-decide _ _ = Dead
 
 -- some utility function You can use (you do not have to)
 getCellValue::Plane->Int->Int->Int

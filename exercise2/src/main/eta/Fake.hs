@@ -2,4 +2,4 @@ module Fake where
 
 main :: IO ()
 main = do
-  print "Hello Again!"
+  print "Fake main - just in case"

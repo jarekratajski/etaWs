@@ -1,28 +1,16 @@
 plugins {
     id 'java'
-//    id 'org.openjfx.javafxplugin'
     id 'application'
     id "me.champeau.gradle.jmh" version "0.4.8"
 }
 
 
 application {
-//    applicationDefaultJvmArgs = ['-Xss512m','-Xmx2g', '-XX:+UseG1GC']
-    applicationDefaultJvmArgs = ['-Xss512m','-Xmx2g',
-                                 '-XX:+UseG1GC' ,
-                                 '-XX:+UnlockDiagnosticVMOptions' ,
-            '-XX:+TraceClassLoading',
-            '-XX:+LogCompilation' ,
-            '-XX:+PrintAssembly']
-
-    mainClassName = 'pl.setblack.etalife.LifeTest'
-
+    mainClassName = 'pl.setblack.etalife.LifeWindow'
 }
 
 dependencies {
-    // https://mvnrepository.com/artifact/org.openjfx/javafx-controls
     compile group: 'org.openjfx', name: 'javafx-controls', version: '12'
-    compile files('libs/something_local.jar')
     compile project(':etaCode')
 }
 
@@ -37,23 +25,19 @@ task customFatJar(type: Jar) {
 
 
 // java 12
-/*
+
 compileJava {
     doFirst {
         options.compilerArgs = [
-                '--module-path', '/opt/java/jfx/javafx-sdk-11.0.2/lib',
-                '--add-modules', 'javafx.controls',
-                '--add-modules', 'javafx.fxml',
-                '--add-modules', 'javafx.web',
-                '--add-modules', 'javafx.graphics',
-                '--add-modules', 'javafx.media'
+//                '--module-path', '/opt/java/jfx/javafx-sdk-11.0.2/lib',
+//                '--add-modules', 'javafx.controls',
+//                '--add-modules', 'javafx.fxml',
+//                '--add-modules', 'javafx.web',
+//                '--add-modules', 'javafx.graphics',
+//                '--add-modules', 'javafx.media'
         ]
-        //classpath = files()
     }
 }
-*/
- 
-
 
 
 //compileTestJava {
@@ -77,28 +61,33 @@ compileJava {
 run {
     doFirst {
         jvmArgs = [
+                //java 9-12
 //                '--module-path', '/opt/java/jfx/javafx-sdk-11.0.2/lib',
 //                '--add-modules', 'javafx.controls',
 //                '--add-modules', 'javafx.fxml',
 //                '--add-modules', 'javafx.web',
 //                '--add-modules', 'javafx.graphics',
 //                '--add-modules', 'javafx.media',
+
                 '-Djava.library.path=/opt/java/tools',
                 '-Xss512m',
-                '-Xmx1g' ,
-//                '-Xmx4g',
-//                '-XX:+UseG1GC',
-  //              '-XX:+PrintCompilation',
-
+                '-Xmx1g',
+// simple Hotspot diagnostic
+//                '-XX:+PrintCompilation',
+// inlining diagnostic
+//                '-XX:+UnlockDiagnosticVMOptions',
+//                '-XX:+PrintInlining',
                 '-Xshare:off',
+//jitwatch additional
+                '-XX:+UnlockDiagnosticVMOptions',
+                '-XX:+TraceClassLoading',
+                '-XX:+LogCompilation' ,
+                '-XX:+PrintAssembly'
 //graal
 //                '-XX:+UnlockExperimentalVMOptions',
 //                '-XX:+EnableJVMCI', '-XX:+UseJVMCICompiler'
 //                '-XX:+UseG1GC' ,
 //                '-XX:+UnlockDiagnosticVMOptions' ,
-//                '-XX:+TraceClassLoading',
-//                '-XX:+LogCompilation' ,
-//                '-XX:+PrintAssembly'
         ]
         standardInput = System.in
     }
@@ -106,18 +95,20 @@ run {
 
 
 jmh {
-    jvmArgs =[ '-Xss512m',
-            '-Xms10g',
-    '-Xmx10g'
-    //,'-verbose:gc'
-     //       ,   '-XX:+UnlockExperimentalVMOptions',
-     //       '-XX:+EnableJVMCI', '-XX:+UseJVMCICompiler'
+    jvmArgs = ['-Xss512m',
+               '-Xms10g',
+               '-Xmx10g'
+               //    graal
+               //       ,'-XX:+UnlockExperimentalVM Options',
+               //       '-XX:+EnableJVMCI', '-XX:+UseJVMCICompiler'
     ]
     warmup = '1s'
     forceGC = true
     iterations = 4
     fork = 3
     timeOnIteration = '3s'
+    //enable performance counters
+//    profilers = ['perf']
 }
 
 

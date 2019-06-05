@@ -9,6 +9,9 @@ dependencies {
 
 compileEta {
     options {
-        args = ['-Wall', '-O2']
+        args = ['-Wall', '-O2',
+//dumping stg
+//                '-ddump-stg', '-ddump-to-file'
+        ]
     }
 }
