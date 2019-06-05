@@ -79,10 +79,10 @@ run {
 //                '-XX:+PrintInlining',
                 '-Xshare:off',
 //jitwatch additional
-                '-XX:+UnlockDiagnosticVMOptions',
-                '-XX:+TraceClassLoading',
-                '-XX:+LogCompilation' ,
-                '-XX:+PrintAssembly'
+//                '-XX:+UnlockDiagnosticVMOptions',
+//                '-XX:+TraceClassLoading',
+//                '-XX:+LogCompilation' ,
+//                '-XX:+PrintAssembly'
 //graal
 //                '-XX:+UnlockExperimentalVMOptions',
 //                '-XX:+EnableJVMCI', '-XX:+UseJVMCICompiler'
