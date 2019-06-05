@@ -10,27 +10,35 @@ type Plane = Array Int Row
 
 -- tell if a cell of a given state (Dead|Alive) is Dead or ALive in next generation (having X neighbours  - a cell is included)
 decide::Cell->Int->Cell
-decide _ _ = Dead
+decide Alive nAliveNeighbours
+  | nAliveNeighbours == 2 || nAliveNeighbours == 3 = Alive
+  | otherwise = Dead
+decide Dead nAliveNeighbours
+  | nAliveNeighbours == 3 = Alive
+  | otherwise = Dead
 
 
 -- create next Plane (game state)
 nextGeneration::Plane->Plane
-nextGeneration !plane =  plane  -- TODO this is obviously wrong
+nextGeneration plane = array (bounds plane) newRows
+   where
+      rows = assocs plane
+      newRows = (\(y,row) -> (y, processRow plane row y) ) <$> rows
 
-
-countNeighbours::Plane->Int->Int->Int
-countNeighbours plane x y = foldl (+) 0 allValues
+countNeighbours::Cell->Plane->Int->Int->Int
+countNeighbours cell plane x y = foldl (+) 0 allValues - cellValue cell
       where
          rows = [y-1, y, y+1]
          cells = [x-1, x, x+1]
          valuesForY y1 =  (\x -> getCellValue plane x y1 ) <$> cells
          allValues =  rows >>= valuesForY
 
+
 processRow::Plane->Row->Int->Row
 processRow plane row y = array (bounds row) neighbours
       where
             cells = assocs row
-            neighbours = ( \(x, cell) -> (x, decide cell (countNeighbours plane x y)) ) <$> cells
+            neighbours = ( \(x, cell) -> (x, decide cell (countNeighbours cell plane x y)) ) <$> cells
 
 
 
