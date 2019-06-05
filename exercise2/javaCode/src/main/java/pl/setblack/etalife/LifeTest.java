@@ -11,13 +11,10 @@ import eta.runtime.Runtime;
 public class LifeTest {
 
     public static void main(String[] args) throws Exception {
-        Runtime.setClearThunks(true);
+
         int logicalWidth = 160;
         int logicalHeight = 160;
         java.io.BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-
-        //WritableImage image = new WritableImage(logicalWidth,logicalHeight);
-
 
         while (true) {
             int statePointer = initPlane(logicalWidth, logicalHeight);
@@ -32,7 +29,6 @@ public class LifeTest {
             System.out.println("enter, ct" + Runtime.shouldClearThunks());
             in.readLine();
         }
-        //LifeJ.freeState(statePointer);
 
     }
 
