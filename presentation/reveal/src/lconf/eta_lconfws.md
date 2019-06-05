@@ -56,6 +56,14 @@ Devs that:
 
 
 
+## What this workshop does not provide
+
+It is not haskell course, we will see and learn only basic syntax
+
+It does not cover fully JVM topics (only selected ones)
+
+
+
 # Typelead
 
 Company founded to create `eta` and in the future provide commercial support for it
