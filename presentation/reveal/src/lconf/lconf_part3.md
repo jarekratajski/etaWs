@@ -84,10 +84,45 @@ Null handling (java <-> eta)
 https://github.com/typelead/eta/issues/954
 
 
+
 ## see exerciseNull
 
 
 
-Eta gitter
+## Tools
+
+
+
+## Javap
+
+Disassemble class
+
+`javap -c -p my/HTest.class  >my/res.txt`
+
+
+
+## dumping stg and classgeneration
+
+from old doc 
+
+`https://github.com/typelead/eta/blob/0.7.2b1/docs/source/eta-user-guide.rst`
+
+`-ddump-stg -ddump-to-file -ddump-cg-trace`
+
+
+
+## interesting places
+
+[Opcodes](https://github.com/rahulmutt/codec-jvm/blob/33c6b01b9bf463635b2ecbbd11e4e8dbdc4c53fc/src/Codec/JVM/Opcode.hs)
+
+[Code](https://github.com/rahulmutt/codec-jvm/blob/33c6b01b9bf463635b2ecbbd11e4e8dbdc4c53fc/src/Codec/JVM/ASM/Code.hs)
+
+[CodeGen](https://github.com/typelead/eta/blob/master/compiler/Eta/CodeGen/Closure.hs)
+
+[Desugar Foreign](https://github.com/typelead/eta/blob/master/compiler/Eta/DeSugar/DsForeign.hs)
+
+
+
+Use eta gitter
 
 https://gitter.im/typelead/eta

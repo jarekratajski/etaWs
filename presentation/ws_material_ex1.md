@@ -28,7 +28,18 @@ After installation check installed versions
 
 `> etlas --version`
 
-`> eta --version`
+`> eta --version` 
+or 
+`> etlas exec eta -- --version`
+
+Write
+` etlas exec eta XYZ`
+
+wherever this documentation shows:
+
+`eta XYZ`
+ 
+
 
 
 Later we will install eta  from source.
@@ -162,8 +173,8 @@ main = do
 
 ``` 
 
-Create etlas/cabal file 
-with 
+Changes etlas/cabal file 
+add vector dependency
  `build-depends:       base >= 4.7 && < 5, vector`
  
  Vector is a hackage package

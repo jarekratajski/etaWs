@@ -4,7 +4,7 @@ OMG  - what is a JVM anyway?
 
 
 
-A thing that runs `.class` files.
+A thing that runs `.class` files
 
 
 
@@ -63,7 +63,7 @@ Code_attribute {
 
 
 
-## opcodes
+## example opcodes
 
 |instuction| code(hex_)| stack (before -> after) | info|
 |--|--|--|--|
@@ -89,8 +89,8 @@ Isn't it very slow ?
 
 
 
-Disclaimer: There ar various JVM implementations from multiple vendors.
-In the next part I will describe mostly Oracle JVM/OpenJDK.
+Disclaimer: There are  various JVM implementations from multiple vendors.
+In the next part I will describe mostly Oracle JVM/OpenJDK
 
 
 
@@ -128,12 +128,16 @@ See:
 
 
 
+## Example
+
 C++   developers have to use 
-`virtual`, `inline` keywords
+`virtual` or `inline` keywords
+- inline can make code faster
+- virtual enables `late binding` (polymorphism)
+- `inline virtual` is possible but works only in few cases
 
 
-
-Java - virtual(`*`) methods can be inlined...
+![wtf](src/images/wtf.jpg)
 
 
 
@@ -149,7 +153,11 @@ https://github.com/AdoptOpenJDK/jitwatch
 
 
 
-PrintAssembly is cool but practically useless
+## PrintAssebly
+
+`-XX:+PrintAssembly` is cool but practically useless
+
+You need `hsdis.so` lib for your system
 
 
 
@@ -177,9 +185,11 @@ It is very hard to make sensible JVM benchmarks
 
 
 
-Initially JVM is very slow, 
-Then it is sometimes faster than code produced by static compilers (depends).
-Sometimes `absurdly` faster (`dead code` elimination).
+1. Initially JVM is just  slow
+
+2. Then it is sometimes faster than code produced by static compilers (depends)
+
+3. Sometimes `absurdly` faster (`dead code` elimination)
 
 [Benchmark pitfalls](https://www.oracle.com/technetwork/articles/java/architect-benchmarking-2266277.html)
 
@@ -246,7 +256,7 @@ Perf stats:
 
 
 
-use `jvisualvm` to connect to running process 
+use `jvisualvm` to connect to  a running process  (included in jdk or a separate build)
 
 
 
@@ -266,13 +276,12 @@ Use `-ddump-stg` switch to get some hints about haskell to java classes/methods 
 
 # Eta
 
-Eta provides own optimizations on top of JVM.
+Eta provides own optimizations on top of JVM
 
 
 
 
 ## Naive fibonacci 
-
 
 ```
 fibnaive  0 = 1
@@ -284,22 +293,19 @@ main =  putStrLn $ show $ fibnaive 200
 
 `eta Fibo.hs`
 
-
 `java -Xss512k -jar RunFibo.jar`
 
 
 
 ## Better fibonacci
 
-```haskell
+```
 fibtcoinner 0 sum presum  = sum
 fibtcoinner n sum presum = fibtcoinner  (n-1) (sum + presum) sum
 
 fibtco n = fibtcoinner n 1 0
 
-
 main =  putStrLn $ show $ fibtco 20000
-
 ```
 
 `eta Fibo.hs`
@@ -308,7 +314,7 @@ main =  putStrLn $ show $ fibtco 20000
 
 
 
-JVM does not support TCO yet
+JVM does not support TCO yet :-(
 
 
 
@@ -344,10 +350,17 @@ Various garbage collectors in  JVMs
 - Epsilon
 
 
-Short pauses vs long  pauses (better throughput)
-Small heap  vs large heap
-Gnerational vs not generational
+
+- Short pauses vs long  pauses (better throughput)
+- Small heap  vs large heap
+- Generational vs not generational
+
+
+
+check `jconsole` tool  (included in jdk)
 
 
 
 
+# Goto part 3
+[Part 3](lconf_part3.html)
