@@ -17,45 +17,63 @@ Java developer (since 1999) with a functional  heart
 ## What is eta?
 
 
+
 Haskell for JVM
+
 
 
 GHC port for JVM
 
 
 
-## Who may even need that
+## Who wants eta?
 
-- love haskell but are forced to used JVM
+Devs that:
+- love **haskell** but are forced to used JVM
 
-- use vast number of libraries available for JAVA
+- want  to use vast number of **libraries** available for JAVA
 
-- write critical parts in safe language
+- want to write **critical** parts in safe language
 
- - everybody
+- just wanna have fun
 
 
 
 ## Agenda
 
 
-1. Eta intro (~ 2.5 hours, beginner)
+
+1. **Eta intro** (~ 2.5 hours, beginner)
    - installation / build
-   - simple eta exercises
-   - eta / java data exchange exercise
-   - beginner level (no haskell knowledge needed, no java knowledge needed )
+   -  eta / java data exchange exercise
    
-2. Into the JVM (~ 2 hours, intermediate)
-   - bytecode
-   - jvm / hotspot 101  
-   - benchmarking
-   - profiling
+2. **Into the JVM** (~ 2 hours, intermediate)
+   - bytecode, jvm, benchmarking, tools
   
-
-3. Into eta internals (~1 hour, intermediate)
+3. **Into eta internals** (~1 hour, intermediate)
    - building eta from sources
-   - finding and fixing eta issue
-    
+   - finding and fixing eta issue (intro)
 
 
 
+# Typelead
+
+Company founded to create `eta` and in the future provide commercial support for it
+
+
+
+I am not associated with Typelead
+
+
+
+Whatever I say or show here are mine own studies. I got help from typelead developers and eta community.
+
+I am neither experienced haskell nor eta developer. 
+
+What I say might be wrong or may not reflect the reality or the future. 
+
+I just try to do my best.
+
+
+
+[Part 1](lconf_part1.html)

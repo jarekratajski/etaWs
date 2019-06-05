@@ -1,44 +1,58 @@
 ## How  ETA works?
 
 
+
 compile haskell sources to bytecode
 
 
-run on jvm
+
+bytecode runs on a standard JVM
 
 
 
-# Intro and documentation
+## Intro and documentation
 
 https://eta-lang.org/
 
 
 
-# Exercise 1a
+Ok that was all, thank you
+
+
+
+## Exercise 1a
+
 Hello world
 
 
-# Exercise 1b
-quick sort
+
+Open:
+[ws_material_ex1.md](ws_material_ex1.md)
+
+
+
+## Exercise 1b
+
+Quick sort:
+[ws_material_ex1.md](ws_material_ex1.md)
 
 
 
 # eta compiler
 
-`eta` =~= `ghc`
+`eta` =~= `ghc` (syntaxx)
 
-`eta` accepts most of options accepted by ghc (v7.x)
+`eta` accepts most of compiler options accepted by ghc (v7.x)
 
 `eta` creates jar files
 
 
 
-# jar files
+## jar files
 
 [FILE].jar  - only project  code 
 
 `jar tf Hello.jar` 
-
 
 Run[FILE].jar - full eta runtime +  project code
 
@@ -46,499 +60,164 @@ Run[FILE].jar - full eta runtime +  project code
 
 
 
-full jar is huge and (linking it is slow)
+full (Run) jar is huge and `linking` it is slow
 
 
-Compile single file - does not produce `Run*.jar`
+
+Compile single file - (without `Run*.jar`)
 (faster)
-
 
 `eta -c Hello.hs`
 
 
 
-# Building
-
+## Build tool
 
 We have more files
 
 We want to use external libraries
 
 
+
 ## Etlas - cabal
 
-(material link - simple cabal)
+[ws_material_ex1.md](ws_material_ex1.md)
 
-# cabal exercise - use hackage
 
-We want to implement real quicksort
+
+## advanced  exercise - use hackage
+
+We want to implement a `real quicksort`
 
 Go to link:
 https://stackoverflow.com/questions/7717691/why-is-the-minimalist-example-haskell-quicksort-not-a-true-quicksort
 
+[ws_material_ex1.md](ws_material_ex1.md)
 
-(material link - better cabal with vector)
 
 
-## End of part1
-
+##  Summary so far
+ 
 `eta` is like `ghc`
 
 `etalas` is like `cabal`
 
-exercise -compile all examples with just ghc and or cabal
+exercise - compile all examples with just ghc and or cabal
+
 
 
 # add java
 
 
 
+```java
+public class HelloWorld 
+{
+    public static void main(String args[]) 
+    { 
+        System.out.println("Hello, Lambda Conf"); 
+    } 
+} 
+```
+
+source
+
+
+
+```
+0000000 feca beba 0000 3400 2200 000a 0006 0914
+0000010 1500 1600 0008 0a17 1800 1900 0007 071a
+0000020 1b00 0001 3c06 6e69 7469 013e 0300 2928
+0000030 0156 0400 6f43 6564 0001 4c0f 6e69 4e65
+0000040 6d75 6562 5472 6261 656c 0001 4c12 636f
+0000050 6c61 6156 6972 6261 656c 6154 6c62 0165
+0000060 0400 6874 7369 0001 4c20 6c70 732f 7465
+0000070 6c62 6361 2f6b 7465 6c61 6669 2f65 6548
+0000080 6c6c 576f 726f 646c 013b 0400 616d 6e69
+0000090 0001 2816 4c5b 616a 6176 6c2f 6e61 2f67
+00000a0 7453 6972 676e 293b 0156 0400 7261 7367
+00000b0 0001 5b13 6a4c 7661 2f61 616c 676e 532f
+00000c0 7274 6e69 3b67 0001 530a 756f 6372 4665
+00000d0 6c69 0165 0f00 6548 6c6c 576f 726f 646c
+00000e0 6a2e 7661 0c61 0700 0800 0007 0c1c 1d00
+00000f0 1e00 0001 4812 6c65 6f6c 202c 614c 626d
+0000100 6164 4320 6e6f 0766 1f00 000c 0020 0121
+0000110 1e00 6c70 732f 7465 6c62 6361 2f6b 7465
+0000120 6c61 6669 2f65 6548 6c6c 576f 726f 646c
+0000130 0001 6a10 7661 2f61 616c 676e 4f2f 6a62
+0000140 6365 0174 1000 616a 6176 6c2f 6e61 2f67
+0000150 7953 7473 6d65 0001 6f03 7475 0001 4c15
+0000160 616a 6176 692f 2f6f 7250 6e69 5374 7274
+0000170 6165 3b6d 0001 6a13 7661 2f61 6f69 502f
+0000180 6972 746e 7453 6572 6d61 0001 7007 6972
+0000190 746e 6e6c 0001 2815 6a4c 7661 2f61 616c
+00001a0 676e 532f 7274 6e69 3b67 5629 2100 0500
+00001b0 0600 0000 0000 0200 0100 0700 0800 0100
+00001c0 0900 0000 2f00 0100 0100 0000 0500 b72a
+00001d0 0100 00b1 0000 0002 000a 0000 0006 0001
+00001e0 0000 0003 000b 0000 000c 0001 0000 0005
+00001f0 000c 000d 0000 0009 000e 000f 0001 0009
+0000200 0000 0037 0002 0001 0000 b209 0200 0312
+0000210 00b6 b104 0000 0200 0a00 0000 0a00 0200
+0000220 0000 0600 0800 0700 0b00 0000 0c00 0100
+0000230 0000 0900 1000 1100 0000 0100 1200 0000
+0000240 0200 1300                              
+0000244
+
+```
+
+compiled class (by `javac`)
+
+
+
+
+`jar`  = multiple `.class` files (zipped) 
+
+
+
+
+
+## Java build tools
+
+maven, gradle
+
+
+
+## java libs repositories
+
+maven central 
+
+
+
+Let's check it
+
+
+
 ## Gradle Exercise 2
 
+Game of life 
 
+[ws_material_ex2.md](ws_material_ex2.md)
 
 
 
-# Goto game of life 
 
-
-
-
-Haskell is a great language
-
-
-
-```haskell
-myfunction::InputType->OutputType
-myfunction  x = 2*x
-
-```
-
-Simple syntax
-
-
-
-# Expressions
-
-
-
-```java
-int crazinessLevel = 0;
-swith (deployment) {
-    case JAR: 
-        craziness = 1;
-        break;
-    case WAR:
-        craziness = 3;
-        break; 
-    case EAR:
-        if (server = "WebSphere") {
-            craziness = 7;
-        }
-         break;
-}
-```
-
-
-
-```haskell
-
-crazinessLevel::Deployment->String->Int
-crazinessLevel JAR _ = 1
-crazinessLevel WAR _ = 3
-crazinessLevel EAR "Websphere"  = 7
--- warning/ error  `Non-exhaustive pattern`
-```
-
-
-
-# Typeclass
-
-
-
-
-```java
-interface JSONSerializable {
-    JSON toJSON();
-}
-
-class My implements JSONSerializable {
-    public JSON toJSON() {
-        return ...;
-    }
-}
-```
-
-
-
-What about **fromJSON**?
-
-
-
-
-```java
-interface JSONDeserializable {
-    void fromJSON(JSON j);
-}
-```
-
-this is just wrong<!-- .element class="fragment" -->
-
-
-
-```haskell
-class FromJSON a where
-    parseJSON :: JSON -> a
-```
-
-```haskell
-instance FromJSON Person where
-    parseJSON = withObject "Person" $ \v -> Person
-        <$> v .: "name"
-        <*> v .: "age"
-
-instance ToJSON Person where
-    toJSON (Person name age) =
-        object ["name" .= name, "age" .= age]
-
-```
-
-
-
-# Purity
-
-
-
-Event sourcing
-
-```java
-interface Event<STATE> {
-    STATE apply(STATE input);
-}
-```
-
-
-
-What about?
- 
-```java 
-class MyEvent implements Event<X>
-
-    public X apply(X before) {
-      ... 
-      new Date()
-      LocalDateTime.now()
-      new Random().nextInt()
-      Files.newInputStream()
-      ...
-   }
-}
-```
-
-Disaster<!-- .element class="fragment" -->
-
-
-
-```haskell
-apply::State->Event->State
-```
-
-No way You can make side effects here(*)
-
-
-
-```haskell
-applyWithSideEffects::State->Event->IO State
-
-```
-
-If You want to enable IO side effects
-
-
-
-## Data modelling is nice
-
-```haskell
-data Person = Person { firstName :: String  
-                     , lastName :: String  
-                     , age :: Int  
-                     , height :: Float  
-                     , phoneNumber :: String  
-                     , flavor :: String  
-                     } deriving (Show)   
-```
-
-
-
-Immutability makes parallel processing  easy
-
-Haskell may compile your code to use threads
-without even asking<!-- .element class="fragment" -->
-
-
-
-And many more...
-
-
-
-# Haskell
-
-- less bugs
-- less tests(!)
-- less code
-
-
-
-# Haskel lesson
-
-Writing important business code in impure, imperative
-language such as Java, Kotlin or even Scala seems  to be an act of a great
-irresponsibility
-
-
-
-# yes but...
-
-
-
-Haskell has own problems
-
-
-
-- No real IDE
-- Tools
-- Libraries (quality!)
-- Old language (compiler extensions)
-
-
-
-Different way of thinking
-
-
-
-# A Mix maybe?
-
-Core business logic, rules, algorithms in Haskell
-
-Java for the rest, safe fallback
-
-
-
-# Eta
-
-Haskell on JVM
-
-
-
-Open source  designed by Typelead
-
-
-
-# Typelead
-
-Company founded to create eta and in the future provide commercial support for it
-
-
-
-I am not associated with Typelead
-
-
-
-Whatever I say or show here are mine own studies. I got help from typelead developers and eta community.
-
-I am neither experienced haskell nor eta developer. 
-
-What I say might be wrong or may not reflect the reality or the future. 
-
-I just try to do my best.
-
-
-
-We talk about unfinished product
-
-
-
-# Eta 1.2.3 intro
-
-
-
-```{haskell}
-quicksort [] = []
-quicksort (x:xs) = quicksort left ++ [x] ++ quicksort right
-    where
-          left  = [ y | y <- xs, y < x ]666
-          right = [ y | y <- xs, y >= x ]
-       
-main = do
-        let result = quicksort arr
-        let result = quicksort arr
-        let result = quicksort arr
-        putStrLn $ show result
-        where
-            arr = [1,7,9,12,90,1,-1,22,0]          
-```
-
-```
-$ eta Main.hs
-
-$ java -jar Main.jar
-```
-
-```
-[-1,0,1,1,7,9,12,22,90]
-```
-
-
-
-## Etlas (build tool for Eta)
-```
-executable life-hs
-  main-is:              Main.hs
-  -- other-modules:
-  -- other-extensions:
-  build-depends:        base >= 4.7 && < 5, array
-  hs-source-dirs:       src
-  default-language:     Haskell2010
-
-```
-
-```
-$ etlas init
-
-$ etlas build
-
-$ etlas run
-
-```
-
-
-
-For more info see [Eta tour](https://tour.eta-lang.org/)  page
-
-![Haskell](/src/images/eta_tour.png)<!-- .element class="center" -->
-
-
-
-### Eta special
+### Eta summary
 
 ## Eta =~=  GHC for jvm
 
-GHC is leading Haskell compiler/environment
 
-mainstream 
+## Eta Supports compiler extensions
 
-
-
-backend for GHC  -> great compatibility
-
-
-
-STG machine
-
-```
-Fibb.fibbtcoinner
-  :: forall a_a7U9 a1_a7UA.
-     (GHC.Classes.Eq a_a7U9, GHC.Num.Num a_a7U9, GHC.Num.Num a1_a7UA) =>
-     a_a7U9 -> a1_a7UA -> a1_a7UA -> a1_a7UA
-[GblId,
- Arity=6,
- Caf=NoCafRefs,
- Str=<S(C(C(S))L),U(C(C1(U)),A)><L,U(A,C(C1(U)),A,A,A,A,C(U))><L,U(C(C1(U)),A,A,A,A,A,A)><L,U><L,U><L,U>,
- Unf=OtherCon []] =
-    \r srt:SRT:[] [$dEq_s8MJ
-                   $dNum_s8MK
-                   $dNum1_s8ML
-                   eta_s8MM
-                   eta1_s8MN
-                   eta2_s8MO]
-        let {
-          lvl1_s8MP [Occ=OnceL] :: a_a7UF
-          [LclId, Str=] =
-              \u srt:SRT:[] []
-                  GHC.Num.fromInteger $dNum_s8MK Fibb.fibbnaive3; } in
-        let {
-          lvl2_s8MQ [Occ=OnceL] :: a_a7UF
-          [LclId, Str=] =
-              \u srt:SRT:[] [] GHC.Num.fromInteger $dNum_s8MK Fibb.fibbnaive1;
-        } in 
-          let-no-escape {
-            fibbtcoinner1_s8MR [Occ=LoopBreaker]
-              :: a_a7UF -> a1_a7UG -> a1_a7UG -> a1_a7UG
-            [LclId, Arity=3, Str=<L,U><L,U><L,U>, Unf=OtherCon []] =
-                sat-only \r srt:SRT:[] [ds_s8MS sum_s8MT presum_s8MU]
-                    case GHC.Classes.== $dEq_s8MJ ds_s8MS lvl2_s8MQ of _ [Occ=Dead] {
-                      GHC.Types.False ->
-                          let {
-                            sat_s8MX [Occ=Once] :: a1_a7UG
-                            [LclId, Str=] =
-                                \u srt:SRT:[] [] GHC.Num.+ $dNum1_s8ML sum_s8MT presum_s8MU; } in
-                          let {
-                            sat_s8MW [Occ=Once] :: a_a7UF
-                            [LclId, Str=] =
-                                \u srt:SRT:[] [] GHC.Num.- $dNum_s8MK ds_s8MS lvl1_s8MP;
-                          } in  fibbtcoinner1_s8MR sat_s8MW sat_s8MX sum_s8MT;
-                      GHC.Types.True -> sum_s8MT;
-                    };
-          } in  fibbtcoinner1_s8MR eta_s8MM eta1_s8MN eta2_s8MO;
+```haskell
+{-# LANGUAGE FlexibleContexts, DataKinds, TypeFamilies, RankNTypes #-}
+--  whatever
 ```
 
+FFI  (C calls) - adapted  for jvm
 
 
-## spineless, tagless G-machine
-
-
-
-## STG
-*...It defines how the Haskell evaluation model should be efficiently implemented on standard hardware. ...*
-
-
-
-STG  =~= (*bytocode* or llvm)
-
-
-
-## 1st phase hs to STG
-Eta compiler in a phase **.hs to STG**
-
-..is simply a GHC code! (forked)
-
-
-
-## 2nd phase  - STG to Bytecode / JVM
-
-
-
-``` 
-0: getstatic     #127                // Field DZMZN:Leta/runtime/stg/Closure;
-3: ifnull        9
-6: goto          35
-9: ldc           #3                  // class ghc_prim/ghc/Types
-11: dup
-12: astore_0
-13: monitorenter
-14: getstatic     #127                // Field DZMZN:Leta/runtime/stg/Closure;
-17: ifnull        23
-20: goto          33
-23: new           #129                // class ghc_prim/ghc/types/datacons/ZMZN
-26: dup
-27: invokespecial #131                // Method ghc_prim/ghc/types/datacons/ZMZN."<init>":()V
-30: putstatic     #127                // Field DZMZN:Leta/runtime/stg/Closure;
-33: aload_0
-34: monitorexit
-35: getstatic     #127                // Field DZMZN:Leta/runtime/stg/Closure;
-38: areturn
-
-```
-
-
-
-## C imports
-
-GHC supports native(C language) calls 
-
-(for instance used in Base packages)
-
-
+## Original GHC FFI calls
 
 Eta rewrites those parts to use jvm calls
 
@@ -563,46 +242,6 @@ foreign import java unsafe "@static eta.base.Utils.isFloatDenormalized"
 foreign import java unsafe "@static eta.base.Utils.isFloatNegativeZero"
   isFloatNegativeZero :: Float -> Bool
 ```
-
-
-
-## Etlas
-
-Haskell GHC developers use `cabal` (or/with stack).
-
-`etlas` is a tool  which is like `fork of cabal` 
-
-It uses `.cabal` file format with extensions 
-
-
-
-## Hackage
-
-
-
-Tons of libraries for haskell
-
-De facto standard
-
-
-
-```
-Categories:  (3), - (1), .NET (9), Accessibility (3), ACME (49), Adjunctions (1), ADSB (4), 
-AI (51), Algebra (35), Algorithm (3), Algorithm Visualization (1), Algorithms (116), 
-Anatomy (1), Animation (6), AOP (2), API (26), Apple (3), Application (25), Application Server (2),
- Applicative (1), Argumentation (4), Arrows (5), Artificial Intelligence (2), Arxiv (1), ASP (1), 
- Aspect Oriented Programming (2), AST (1), Atom (1), ATS (8), Attoparsec (2), Attribute Grammars (1), 
- Audio (13), Authentication (9), Automation (2), Avers (4), Aviation (19), AWS (136), Backup (2), Base (1), 
- Benchmarking (11), Big Data (2), Binary (1), Bindings (39), Bio (4), Bioinformatics (99), Bit (2), Bit Vectors (7),
-  Bitcoin (12), Blockchain (1), Browser (7), BSD (1), Bsd3 (1), Bsparse (1), Build (6), Build Tool (1), 
-  Builders (1), Business (3), ByteString (3), ByteStrings (1), C (1), Cabal (1), Cache (2), Caching (1), 
-  CAPTCHA (1), Cast (1), Categories (7), Category (1), CGI (1), Charts (4), Chat (1), Chemistry (5), 
-  CI (1), Classification (4), Clckwrks (11), CLI (19), CLI Tool (1), Client (5), Cloud (246), Cloud Haskell (5), CLR (6), Clustering (7), Code Competitions (1), Code Generation (24), Codec (131), Codecs (8), Combinatorics (1), Combinators (17), Command Line (4), Command Line Tool (4), Command Line Tools (1), CommandLine (1), Commerce (1), Commercial (2), Common-Parts (1), Comonads (16), Compatibility (7), Compilation (1), Compiler (50), Compiler Plugin (7), Compilers (3), Compilers/Interpreters (133), Composition (10), Compression (12), Computer Algebra (1), Concurrency (194), Concurrent (11), Conduit (66), Config (2), Configuration (30), Console (82), Constraint (1), Constraints (13), Containers (3), Contract (1), Contracts (1), Control (643), Control.Parallel.Eden (1), Convenience (1), Conversion (5), CouchDB (1), CPP (1), Criu (2), Crosswords (1), Crypto (22), Cryptocurrency (1), Cryptography (124), CsSyd (1), CSV (10), Culinary (1), Data (1656), Data Conduit (1), Data Flow (1), Data Mining (19), Data Science (2), Data Structure (2), Data Structures (217), Data-structures (1), Database (380), Database Design (1), Database Testing Web (3), Databases (3), Datamining (3), Date (2), Debian (4), Debug (39), Debugging (3), Decompiler (1), Deep Learning (1), Demo (7), Dependency Injection (1), Dependent Types (31), Derive-monoid (1), Desktop (17), Desktop Environment (4), Development (619), Diagnostics (1), Diagram (1), Digest (2), Disassembler (3), Distributed Computing (159), Distributed Systems (1), Distribution (120), DNS (1), Documentation (21), Download Manager (2), DSL (3), EBNF (1), Eden (3), Editing (1), Editor (20), Education (28), Educational (2), Effect (12), Emacs (1), Email (9), Embedded (26), Enumerator (29), Environment (1), Error Handling (22), Ethereum (5), Eval.so (1), Eventloop (1), Eventsourcing (11), Example (1), Exception (1), Exceptions (6), Executable (1), Experiment (1), Experimental (2), Extension (10), Factual (2), Failure (25), Fay (9), Fedora (3), Feed (1), FFI (110), FFI Tools (8), File (5), File Manager (3), Filesystem (17), Finance (54), Finance Network Bitcoin (1), Financial (2), Fitness (1), Font (2), Foreign (77), Foreign Binding (5), Formal Languages (9), Formal Methods (30), Foundation (2), Fractals (1), Framework (2), FRP (72), Functions (5), Functors (6), Game (229), Game Engine (30), Games (2), Genealogy (2), General (1), Generic (5), Generics (93), Gentoo (1), Geo (2), Geography (9), Geometry (11), Geospatial (1), GHC (22), GIS Programs (1), Git (7), GitHub (3), GiveYouAHead (2), Google (110), GPU (2), Graph (2), Graphics (521), Graphs (30), Groundhog (1), GUI (62), Hakyll (1), HAM (1), Ham-radio (1), Happstack (17), Hardware (52), Hash (5), Haskell (7), Haskell2010 (3), Haskell98 (2), Hasql (9), Help (2), Heuristics (2), HTML (11), HTTP (4), Hxt (1), Hydraulics (1), Hydrology (1), I2C (2), IDE (15), Image (12), Image Processing (2), Image Viewer (3), Indexed (1), Interaction (2), Interfaces (8), Interpreter (1), IO (2), IO-Streams (18), IoT (1), IRC (12), IRC Client (2), IRI (1), Iteratee (1), Japanese Natural Language Processing (1), Java (13), JavaScript (19), JSON (65), JSX (1), JVM (14), Kerf (1), Ketchup (1), Keyword Extractor (1), Lalr (1), Lambda Cube (1), LambdaCalculus (2), Language (550), Language Tools (1), Languages (4), LaTeX (6), Lazy (1), Learning Environments (1), Learning Haskell (1), Lens (7), Lenses (32), Lexer (2), Lib (1), Library (14), Linear Algebra (2), Linguistics (5), Linux (2), Linux Desktop (1), List (10), Little Game (1), Local Search (1), Logging (26), Logic (32), Logic Programming (3), Logstash (1), LUA (1), Machine Learning (36), Machine Vision (3), Machines (2), Mail (4), Manatee (17), Map (1), MapReduce (1), Math (506), Mathematics (7), Maths (3), Matrix (1), Media (10), Medical (2), Memoization (1), Memory (1), Message-Oriented (1), Message-Oriented Middleware (5), Meta (1), Metalanguage (1), Metrics (4), Microcontroller (4), Middleware (3), Minecraft (2), Miscellaneous (1), Miso (1), Mobile (5), Model (3), Monad (19), Monadic Regions (12), MonadIO (1), Monads (87), Money (1), Monitoring (8), Multimedia (3), Multimedia Player (2), Mumeric.Statistics (1), Murmur (1), Music (86), MusicBrainz (1), Mutable State (1), NA (1), Naqsha (1), Natural Language (1), Natural Language Processing (85), Net (1), Network (937), Network APIs (14), Network Control (1), NetworkAPI (1), NetworkAPIs (1), Networking (12), Nix (14), NLP (6), Noise (2), None (1), NonEmpty (1), Ntrol (1), Number Theory (12), Numeric (42), Numerical (62), Numerics (2), OAuth (1), Object Storage (1), Ocilib (1), ODPI-C (1), Office (1), OOP (1), OpenLayers (1), Operating System (4), Operations (1), Optimisation (12), Optimization (13), Options (6), Oracle (2), Other (21), OverloadeLabels (1), PagerDuty (1), Parallelism (38), Parry (1), Parser (21), ParserCombinators (2), Parsers (5), Parsing (174), Password (5), Pattern (1), Pattern Classification (2), Pattern Recognition (1), PDF (9), PDF Viewer (1), Performance (3), Persistent (2), PersonalGrowth (1), Phantom Types (5), Phishing (1), Physics (27), Picture (1), Pipes (46), PL/SQL Tools (1), Planning (1), Plotting (1), Plugin (1), Poker (1), Polymorphism (2), PostgreSQL (13), Potoki (1), Prelude (65), Preprocessor (3), Pretty Printer (15), Pretty-printing (1), Process Manager (1), Profiling (14), Program Transformation (2), Project (8), Prompt (1), Protocol (5), Proxies (1), Ptr (1), Pugs (8), Pup-Events (5), PureScript (1), Quantum (2), QuasiQoutes (1), QuasiQuotes (3), QuickCheck (2), Qux (2), Raaz (1), Radio (1), RAKE (1), Random (12), Raspberrypi (3), Raw (1), RDF (1), Reactive (3), Reactivity (28), Records (24), Recursion (3), Refactoring (4), Reflection (9), Regex (6), Relational Algebra (1), Relaxng (1), REPL (1), Reverse Engineering (3), RFC (1), Robotics (7), RSS (2), RSS/Atom Reader (1), Saas (1), Safe (1), Sample Code (1), Scheduling (3), Science (11), Scientific (1), Scientific Simulation (1), Screencast (1), Screensaver (1), Scripting (6), SDR (1), Search (12), Security (27), Selenium (1), Semantic Web (3), Semigroups (1), Serialization (19), Servant (22), Service (3), Services (2), Set Theory (1), Shake (6), Shell (2), Si5351 (1), Silk (1), Silly Tool (1), Simple (4), Simulation (17), SMT (11), Snap (34), Snaplet-fay (1), Socket (1), Software (3), Software Defined Radio (2), Sorting (1), Sound (182), Source Code Analysis (2), Source Tools (1), Source-tools (8), Spreadsheet (1), SQLite (1), Static Analysis (7), Statistical Modeling (1), Statistics (48), Steganography (1), Stemming (1), STM (1), STM32 (4), Stochastic Control (1), Stomp (4), Stratux (4), Streaming (23), String (6), Structures (1), Subversion (1), Support Vector Machine (1), SVD (1), Svg (2), Swagger (3), Symbolic Computation (10), Syntax (6), SyntComp (1), System (635), System Tools (2), Systems (1), Tasty-kat (1), Teaching (7), Template (8), Template Haskell (35), TemplateHaskell (1), Templating (2), Terminal (6), Test (22), Testing (271), Testing-hackage (1), Text (789), Text Editor (1), Text Recognition (1), Text.PrettyPrint (1), TH (2), Theorem Provers (42), Time (34), Time-frequency Distributions (1), Timeout (1), TODO (5), TOML (2), Tools (37), Topology (1), TouchDesigner (1), Trace (12), Training (1), Trans (1), Transformation (3), Translation (1), Tree (4), Tutorials (1), Type Inference (1), Type System (35), Type Theory (1), Typechecking (1), Types (3), Typesystems (1), Typography (6), UI (8), Unicode (3), Unification (2), Uniform (4), Unikernel (1), Unknown (3), Unsafe (2), Ur/Web (2), URI (2), URL (1), User Interface (1), User Interfaces (69), User-interface (2), UserInterface (4), Util (4), Utilities (10), Utility (40), Utils (83), Uzbl (1), Validity (8), Value (4), Vector (5), Video (2), Visual Programming (2), Visualization (1), Wai (2), Water (1), Web (1487), Web Server (1), Web Yesod (1), WebDriver (1), Webframework (1), Welcome (1), Wiki (1), Workflow (1), Wsjtx (1), X11 (1), XFCE (1), XML (103), XMonad (3), Yampa (1), Yesod (96), Yi (18), Zeromq (1), Zift (7), Zippers (2), Unclassified (240).
-```
-
-
-
-What about  native (C/FFI) code? 
 
 
 
@@ -632,18 +271,15 @@ https://github.com/typelead/eta-hackage/blob/master/patches/text-1.2.2.2.patch
 
 
 
-## Eta Supports compiler extensions
-
-```haskell
-{-# LANGUAGE FlexibleContexts, DataKinds, TypeFamilies, RankNTypes #-}
---  whatever
-```
-
-
 
 ### Eta is as close as you can get with Haskell/GHC on JVM
 
 Lots of crazy haskell codes that use GHC extensions work on Eta without any problems
+
+
+# Goto part 2
+[Part 2](lconf_part2.html)
+
 
 
 

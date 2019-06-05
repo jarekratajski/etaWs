@@ -33,7 +33,7 @@ After installation check installed versions
 
 Later we will install eta  from source.
 
-# Exercise1 
+# Exercise1 (a)
 
 Compilation of simple eta files.
 
@@ -66,7 +66,7 @@ Run full java module.
 Make some experiment. Have fun.
 
 
-## Exercise 1b qsort example
+## Exercise 1 (b) qsort example
 
 lets play with sorting:
 create file Qsort.hs with the content below:
@@ -127,57 +127,3 @@ run
 - do You have your own haskell project?
 - can You implement a *real* quick sort? 
 
-
-# Exercise 2
-
-Java eta interoperability
-
-## Game of life
-
-Please go to exercise2 folder.
-
-go to main folder
-
-`> ./gradlew run`
-
-If You get an error about missing javafx library you have to install it (on ubuntu sudo apt-get install openjfx)
-
-
-Check article:
-
-[Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)
-
-If You click on **next** button of **auto**  nothing happens.
-
-Because the generation of a next plane is ... simplified.
-
-```
-nextGeneration::Plane->Plane
-nextGeneration plane =  plane
-```
-
-Check defeintions of `Cell`, `Plane`, `Row` and try to write rules for a game.
-
->Any live cell with fewer than two live neighbors dies, as if by underpopulation.
- Any live cell with two or three live neighbors lives on to the next generation.
- Any live cell with more than three live neighbors dies, as if by overpopulation.
- Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
-
-
-## technical problems
-`> ./gradlew clean`  cleans the project
-
-`> ./gradlew :run`  runs only eta part (nice for debug)
-
-## advanced
-
-The game runs relatively slow. 
-Can You make it faster?
-
-
-
-## TODOS alternative
-- better frame
-- prepare game pong
-- comments
--
