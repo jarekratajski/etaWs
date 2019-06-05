@@ -64,6 +64,10 @@ It does not cover fully JVM topics (only selected ones)
 
 
 
+We will *scratch the surface* of many topics
+
+
+
 # Typelead
 
 Company founded to create `eta` and in the future provide commercial support for it

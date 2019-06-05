@@ -361,6 +361,17 @@ check `jconsole` tool  (included in jdk)
 
 
 
+## Graal
+
+Unlock graal lines in exercise 2  - run with jdk12
+
+`./gradlew :javaCode:jmh -Dorg.gradle.java.home=/opt/java/jdk`
+
+
+
+Graal is a JIT compiler written in java/ part of JVM
+Replaces the old C++ / C2 compilers
+
 
 # Goto part 3
 [Part 3](lconf_part3.html)
