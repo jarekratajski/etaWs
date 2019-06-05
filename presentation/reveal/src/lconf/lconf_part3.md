@@ -129,6 +129,37 @@ https://gitter.im/typelead/eta
 
 
 
+Current state of eta
+
+
+
+- looks stable
+
+- growing tooling
+
+- lots of smaller issues that can be done to make it better
+
+
+
+# Want eta on production?
+
+Ask Typelead
+
+
+
+Want to play, have fun - do it now
+
+
+
+This is one of the few projects where You can easily enter 
+and contribute something meaningful 
+
+
+
+Even if you learn haskell
+
+
+
 # End
 
 `@jarek000000`

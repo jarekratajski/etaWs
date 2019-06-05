@@ -60,11 +60,17 @@ Devs that:
 
 It is not haskell course, we will see and learn only basic syntax
 
-It does not cover fully JVM topics (only selected ones)
+It does not cover all JVM topics (only selected ones)
 
 
 
 We will *scratch the surface* of many topics
+
+
+
+I am  open for questions
+
+any time
 
 
 
