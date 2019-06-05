@@ -20,6 +20,18 @@ Ok that was all, thank you
 
 
 
+![Troll](src/images/trollface.png)
+
+
+
+## Repo for this workshop
+https://github.com/jarekratajski/etaWs
+
+![URL](src/images/url.png)
+
+
+
+
 ## Exercise 1a
 
 Hello world
@@ -27,14 +39,14 @@ Hello world
 
 
 Open:
-[ws_material_ex1.md](ws_material_ex1.md)
+[ws_material_ex1.md](https://github.com/jarekratajski/etaWs/blob/master/presentation/ws_material_ex1.md)
 
 
 
 ## Exercise 1b
 
 Quick sort:
-[ws_material_ex1.md](ws_material_ex1.md)
+[ws_material_ex1.md](https://github.com/jarekratajski/etaWs/blob/master/presentation/ws_material_ex1.md)
 
 
 
@@ -81,18 +93,31 @@ We want to use external libraries
 
 ## Etlas - cabal
 
-[ws_material_ex1.md](ws_material_ex1.md)
+[ws_material_ex1.md](https://github.com/jarekratajski/etaWs/blob/master/presentation/ws_material_ex1.md)
 
 
 
-## advanced  exercise - use hackage
+## advanced  exercise (with hackage)
 
-We want to implement a `real quicksort`
+
+
+[hackage](https://hackage.haskell.org/)
+
+
+
+## We want to implement a `real quicksort`
 
 Go to link:
 https://stackoverflow.com/questions/7717691/why-is-the-minimalist-example-haskell-quicksort-not-a-true-quicksort
 
-[ws_material_ex1.md](ws_material_ex1.md)
+
+
+We need to use something like [vector](https://hackage.haskell.org/package/vector-0.12.0.3/docs/Data-Vector-Generic-Mutable.html)
+
+
+
+[ws_material_ex1.md](https://github.com/jarekratajski/etaWs/blob/master/presentation/ws_material_ex1.md)
+
 
 
 
@@ -102,7 +127,7 @@ https://stackoverflow.com/questions/7717691/why-is-the-minimalist-example-haskel
 
 `etalas` is like `cabal`
 
-exercise - compile all examples with just ghc and or cabal
+optional exercise - compile all examples with just ghc and/or cabal
 
 
 
@@ -170,10 +195,7 @@ compiled class (by `javac`)
 
 
 
-
 `jar`  = multiple `.class` files (zipped) 
-
-
 
 
 
@@ -185,11 +207,11 @@ maven, gradle
 
 ## java libs repositories
 
-maven central 
+[maven central](https://mvnrepository.com/repos/central)
 
 
 
-Let's check it
+Let's do some java
 
 
 
@@ -201,10 +223,35 @@ Game of life
 
 
 
+## Java interchange
+
+Import java class to eta
+```
+data JColor = JColor @java.awt.Color deriving Class
+```
+
+Import java function to eta
+```
+foreign import java unsafe "getGreen" getGreen 
+   :: Java JColor Int
+```
+
+Export eta function to java
+```
+foreign export java "@static pl.setblack.life.LifeJ.setCell" 
+   setCellXP :: GOLState->Int->Int->JColor->IO GOLState
+```
+
+
+
+# Java is a monad
+
+
 
 ### Eta summary
 
 ## Eta =~=  GHC for jvm
+
 
 
 ## Eta Supports compiler extensions
@@ -214,12 +261,13 @@ Game of life
 --  whatever
 ```
 
+
+
 FFI  (C calls) - adapted  for jvm
 
 
-## Original GHC FFI calls
 
-Eta rewrites those parts to use jvm calls
+### Rewritten GHC FFI calls
 
 original GHC `Float.hs` fragment
 
@@ -277,685 +325,10 @@ https://github.com/typelead/eta-hackage/blob/master/patches/text-1.2.2.2.patch
 Lots of crazy haskell codes that use GHC extensions work on Eta without any problems
 
 
+
 # Goto part 2
 [Part 2](lconf_part2.html)
 
 
-
-
-# What about performance?
-
-
-
-## Basic optimizations
-
-
-
-##  TCO 
-
-
-
-Naive fibonacci
-
-```{haskell}
-fibnaive  0 = 1
-fibnaive  1 = 1
-fibnaive  n = fibnaive ( n-1) + fibnaive ( n - 2)
-```
-
-
-
-better
-
-```{haskell}
-fibtcoinner 0 sum presum  = sum
-fibtcoinner n sum presum = fibtcoinner  (n-1) (sum + presum) sum
-
-fibtco n = fibbtcoinner n 1 0
-
-```
-
-
-
-JVM does not support TCO :-(
-
-
-
-![TCO](src/images/tco.jpg)
-
-
-
-Java
-
-```{java}
-private static BigInteger fibonacci(int n, BigInteger sum, BigInteger presum) {
-        if ( n== 0) {
-            return sum;
-        } else {
-
-            return fibonacci(n-1, sum.add(presum), sum);
-        }
-    }
-```
-
-
-
-How much java stands?
-
-
-
-~ 10.000
-
-(depends on `-Xss` setting)
-
-
-
-Eta
-  
-```{haskell}
-fibtcoinner 0 sum presum  = sum
-fibtcoinner n sum presum = fibtcoinner  (n-1) (sum + presum) sum
-
-fibtco n = fibtcoinner n 1 0
-``` 
-
-How much this can take?
-
-
-
-```haskell
-main = print $ show $  fibtco 1000000
-```
-
-
-
-```{java}
- while(var8) {
-     Main.sat_s7YH var12 = new Main.sat_s7YH(var3);
-     var1.R1 = var2;
-     Closure var13 = Classes.zeze().enter(var1).apply2(var1, (Closure)var9, var12);
-     if (!(var13 instanceof False)) {
-         return ((Closure)var10).evaluate(var1);
-     }
-
-     Main.sat_s7YM var14 = new Main.sat_s7YM(var4, (Closure)var10, (Closure)var11); //this must be sum + presum
-     Main.sat_s7YL var15 = new Main.sat_s7YL(var3, (Closure)var9); // this must be n-1
-     var9 = var15;    //assign n-1
-     var10 = var14;  //assign new sum
-     var11 = var14;  //assign presum
-     var8 = true;
- }
-```
-
-
-
-Actually there is a bug above
-
-TCO in `eta` did not work always two years ago
-
-
-
-## A task
-Fix/Improve TCO in compiler of Haskell written in Haskell (ghc) while learning haskell
-
-
-
-![scared](src/images/scared.jpg)
-
-
-
-```{Haskell}
-       withContinuation unknownCall contCode lastCode
-     JumpToIt label cgLocs mLne -> do	     JumpToIt label cgLocs mLne -> do
-       traceCg (str "cgIdApp: JumpToIt")	       traceCg (str "cgIdApp: JumpToIt")
--      codes <- getNonVoidArgCodes args	+      deps <- dependencies cgLocs args
--      emit $ multiAssign cgLocs codes	+      let sorted = sortedDeps deps
-+      codes <- getNonVoidArgCodes $ arg <$> sorted
-+      emit $ multiAssign (from <$> sorted) codes
-           <> maybe mempty	           <> maybe mempty
-                (\(target, targetLoc) ->	                (\(target, targetLoc) ->
-                   storeLoc targetLoc (iconst (locFt targetLoc) $ fromIntegral target))	                   storeLoc targetLoc (iconst (locFt targetLoc) $ fromIntegral target))
-                mLne	                mLne
-           <> goto label	           <> goto label
- 	 
-+data LocalDep = LocalDep Int Int
-+{-
-+type CgBindings = IdEnv CgIdInfo
-+-- | Variable Environment
-+type VarEnv elt     = UniqFM elt
-+
-+-- | Identifier Environment
-+type IdEnv elt      = VarEnv elt
-+newtype UniqFM ele = UFM (M.IntMap ele)
-+
-+-}
-+data CgDependency = CgDependency { from::CgLoc, to:: CgLoc, arg::StgArg } -- deriving (Show)
-+
-+sortedDeps deps = ( \(node,b,c) -> node)  <$> ( map vertexToNode $ G.topSort myGraph )
-+        where (myGraph,vertexToNode,keyToVertex) = G.graphFromEdges $  (\x -> (x, show $ from x ,[show $ to x])) <$> deps
-+
-+dependencies::[CgLoc]->[StgArg]->CodeGen [CgDependency]
-+dependencies locs [] =  pure []
-+dependencies (y:ys) (x:xs) = dependencies ys xs  >>=  joinDependency y x
-+dependencies _ _ = pure []
-+
-+joinDependency  loc x deps =
-+    joinSingle x loc deps  <$> dep
-+    where dep = dependency x
-+
-+joinSingle arg loc deps Nothing = deps
-+joinSingle arg loc deps (Just x) = CgDependency{from=loc, to=x, arg=arg}:deps
-+
-+dependency::StgArg->CodeGen (Maybe CgLoc)
-+dependency arg = getGetDepCgLoad (NonVoid arg)
-+
-+getGetDepCgLoad :: NonVoid StgArg -> CodeGen (Maybe CgLoc)
-+getGetDepCgLoad (NonVoid (StgVarArg var)) = Just <$> cgLocation <$> getCgIdInfo var
-+getGetDepCgLoad (NonVoid (StgLitArg literal)) = return Nothing
-+
-```
-
-
-
-![having a help](src/images/help.png)<!-- .element style="height: 500px" -->
-
-With a help of main Eta developer it was not that hard 
-It was fun
-
-
-
-```
- while(var8) {
-     Main.sat_s7YH var12 = new Main.sat_s7YH(var3);
-     var1.R1 = var2;
-     Closure var13 = Classes.zeze().enter(var1).apply2(var1, (Closure)var9, var12);
-     if (!(var13 instanceof False)) {
-         return ((Closure)var10).evaluate(var1);
-     }
-
-     Main.sat_s7YM var14 = new Main.sat_s7YM(var4, (Closure)var10, (Closure)var11); //this must be sum + presum
-     Main.sat_s7YL var15 = new Main.sat_s7YL(var3, (Closure)var9); // this must be n-1
-     var11 = var10;  //assign presum
-     var10 = var14;  //assign new sum
-     var9 = var15;    //assign n-1
-     var8 = true;
- }       
-``` 
-
-
-
-## Performance
-
-
-
--  JMH
-- Quick sort implementations exported and called from java
-- naive and real quicksort
-- compared to same solutions in Java (using vavr.io)
-- not very professional  - just to get some overview
-
-
-
-Naive quicksort Eta
-
-```{haskell}
-quicksort [] = []
-quicksort (x:xs) = quicksort left ++ [x] ++ quicksort right
-    where
-          left  = [ y | y <- xs, y < x ]
-          right = [ y | y <- xs, y >= x ]
-
-```
-
-Naive quicksort Java/vavr
-```{java}
-       private List<Integer> qsort(List<Integer> input) {
-           if (!input.isEmpty()) {
-               final int middle =  input.head();
-               final List<Integer> left = input.tail().filter( x -> x <= middle);
-               final List<Integer> right = input.tail().filter( x -> x > middle);
-               return qsort(left).appendAll(qsort(right).prepend(middle));
-           } else {
-               return input;
-           }
-       }
-```
-
-
-
-Real quicksort ETA
-
-```{haskell}
-   qvsort :: (G.Vector v a, Ord a) => v a -> v a
-   qvsort = G.modify go where
-       go xs | M.length xs < 2 = return ()
-             | otherwise = do
-               p <- M.read xs (M.length xs `div` 2)
-               j <- M.unstablePartition (< p) xs
-               let (l, pr) = M.splitAt j xs
-               k <- M.unstablePartition (== p) pr
-               go l; go $ M.drop k pr
-   
-   myvsort ::[Int] ->[Int]
-   myvsort li =
-       let vec = V.fromList li :: (V.Vector Int)
-           sorted = qvsort vec :: (V.Vector Int)
-           converted = V.toList sorted :: [Int]
-       in converted
-   mklist ::  VList JInteger -> IO [Int] --needed for Java interrop
-   mklist li =  do
-           empty <-  javaWith li visEmpty
-           if  empty
-           then  return []
-           else     (javaWith li vhead ) >>=(\x -> return [fromJava x])       
-```
-
-
-
-Real ~~quick~~sort Java (*)
-
-```{java}
-   list.sort(); // :-)
-
-```
-
-
-
-[https://github.com/jarekratajski/eta-sort-bm](https://github.com/jarekratajski/eta-sort-bm)
-
-
-
-Results
-
-![Sort performance](src/images/qs_performance.png)
-
-
-
-# vs other *Haskells*
-
-
-
-12 Queens
-
-```{haskell}
-   {-# LANGUAGE BangPatterns #-}
-   
-   -- solution by Oystein Kolsrud
-   -- https://www.youtube.com/watch?v=I2tMmsZC1ZU
-   okToAdd :: Int -> [Int] -> Bool
-   okToAdd q qs = all (okToAddDirection q qs) [succ, pred, id]
-       where
-           okToAddDirection q qs f = and $ zipWith (/=) (tail (iterate f q)) qs
-   
-   extendSolution n qs = map (\q -> q:qs) $ filter (\q -> okToAdd q qs) [1..n]
-   
-   allSolutions !n 0 = [[]]
-   allSolutions !n k = concatMap (extendSolution n) (allSolutions n (k-1))
-   
-   
-   main = do
-        putStr "12 Queens, "
-        putStr (show $ length $ allSolutions 12 12)
-        putStr " Solutions.\n"
-
-```
-
-
-
-|Implementation| Task |Solutions | Time (real)|
-|--|--|--|--|
-|Frege| 12 Queens | 14200 Solutions|     (*)45.816s|
-|Eta| 12 Queens| 14200 Solutions |    (*)26.472s |
-|Ghc| 12 Queens|  14200 Solutions |   9.806s|
-
-`*` Unfair benchmark - both Frege and Eta were measured with JVM startup time
-
-
-
-Other benchmarks
-
-[https://github.com/jbgi/partial-evaluation](https://github.com/jbgi/partial-evaluation)
-
-
-
-#  Java Interopability 
-
-
-
-## JWT - java types
-
-```{haskell}
-data JColor = JColor @java.awt.Color
-  deriving Class
-```
-
-
-
-## foreign import
-
-```{haskell}
-
-foreign import java unsafe "getGreen" getGreen
-  :: Java JColor Int
-
-```
-
-
-
-Java  is a *Monad*.
-
-```haskell
--- Execute a Java action in the IO monad.
-java :: Java c a -> IO a
-
--- Execute a Java action in the IO monad with respect to the
--- given object.
-javaWith :: (Class c) => c -> Java c a -> IO a
-
--- Execute a Java action in the Java monad of another class
--- with respect to the given object.
-(<.>) :: (Class c) => c -> Java c a -> Java b a
-withObject :: (Class c) => c -> Java c a -> Java b a
-
--- Chain Java actions.
-(>-) :: (Class b) => Java a b -> Java b c -> Java a c
-
--- Execute an IO action inside of the Java monad
-io :: IO a -> Java c a
-
--- Execute a Java action purely, i.e. order of execution does not matter.
-pureJava :: Java c a -> a
-
--- Analagous to `javaWith`, but pure.
-pureJavaWith :: (Class c) => c -> Java c a -> a
-```
-
-
-
-## foreign export
-
-```{haskell}
-foreign export java "@static eta.example.MyExportedClass.sort"
-   sort :: JIntArray -> JIntArray
-
-```
-
-
-
-# Styles of interoperability
-
-
-
-## Full Haskell way
-
-Example:
-[WAI Servlet](https://github.com/jneira/wai-servlet)
-```{haskell}
-appAll :: FilePath -> Application
-appAll filePath req respond = case pathInfo req of
-  ["state"]        -> appState (unsafePerformIO $ newMVar 0) req respond
-  ["stream"]       -> appStream req respond
-  ["request-info"] -> appShowReq req respond
-  ["static-file"]  -> appFile filePath req respond
-  _                -> appSimple req respond
-```
-
-
-
-## Classes in java logic in haskell
-
-- Types defined in java
-- Haskell functions work on Java objects
-- Support and use of Java frameworks, serializations, db bindings, jsons.
-
-
-
-![swapped](src/images/pongcheck.png)<!-- .element style="height: 500px" -->
-
-
-
-```{java}
-@JsonDeserialize
-public class Ball extends GameObject {
-    private static final long serialVersionUID = 1L;
-    public final Vector2D speed;
-
-    @JsonCreator
-    public Ball(float x, float y, Vector2D speed) {
-        super(x, y);
-        this.speed = speed;
-    }
-```
-
-
-
-```{java}
-@JsonDeserialize
-public class GameState implements Serializable {
-    private static final long serialVersionUID = 1L;
-    public final GamePhase phase;
-    public final Ball ball;
-    public final Players players;
-    public final long updateTime;
-
-    @JsonCreator
-    public GameState(
-            final Ball ball,
-            final Players players,
-            final long updateTime) {
-        this.ball = ball;
-        this.players = players;
-        this.updateTime = updateTime;
-        this.phase = players.phaseFromScore();
-    }
-```
-
-
-
-```{haskell}
-foreign import java unsafe "@new" newGameState  :: Ball.Ball -> Players.Players -> Int64 -> GameState
-
-foreign import java unsafe "@field phase" phase :: GameState -> GamePhase.GamePhase
-
-foreign import java unsafe "@field ball" ball :: GameState -> Ball.Ball
-
-foreign import java unsafe "@field players" players :: GameState -> Players.Players
-
-foreign import java unsafe "@field updateTime" updateTime :: GameState -> Int64
-
-push::GameState->Int64->J.Random->IO GameState
-push state time rnd
-         | (aPhase == GamePhase.started ) = pushStarted state time rnd
-         | otherwise  =  return state
-         where aPhase = phase state
-```
-
-
-
-Linguistic determinism
-
-
-
-![snow](src/images/snow.jpeg)<!-- .element height="500" -->
-
-<small>from http://postcogtopics.blogspot.com/2016/</small>
-
-
-
-```{java}
-    //A piece of smart code in Players should reduce both methods code duplication
-    private Tuple2<Ball, Players> bouncePlayer1(final Players players, final Random rnd) {
-        if (this.x < 0 && speed.x < 0) {
-            if (isTouchingPaddle(players.player1.paddle, this.y)) {
-                return Tuple.of(new Ball(0f, this.y, this.speed.bounceX()), players);
-            } else {
-                return Tuple.of(Ball.randomDirection(rnd), players.mapPlayer(2, pl2 -> pl2.score()));
-            }
-        }
-        return Tuple.of(this, players);
-    }
-
-    private Tuple2<Ball, Players> bouncePlayer2(final Players players, final Random rnd) {
-        if (this.x > 1.0f && speed.x > 0) {
-            if (isTouchingPaddle(players.player2.paddle, this.y)) {
-                return Tuple.of(new Ball(1f, this.y, this.speed.bounceX()), players);
-            } else {
-                return Tuple.of(Ball.randomDirection(rnd), players.mapPlayer(1, pl1 -> pl1.score()));
-            }
-        }
-        return Tuple.of(this, players);
-    }
-```
-
-
-
-```{haskell}
-bouncePlayerInternal::Ball->Players.Players->J.Random->(Lens' Players.Players Player.Player)->(Lens' Players.Players Player.Player)->Float->IO (Ball, Players.Players)
-bouncePlayerInternal ball players rnd lens opLens  xposition
-      | (isTouchingPaddle paddle thisY) = return (newBall xposition thisY (Vector2D.bounceX thisSpeed), players)
-      | otherwise = do
-         randomBall <- randomDirection rnd
-         return ( randomBall, set opLens  opponentScored players)
-   where
-      thisX = xObj ball
-      thisY = yObj ball
-      thisSpeed = speed ball
-      speedX = Vector2D.x thisSpeed
-      playerView = view lens players
-      opponentScored = Player.incScore $ view opLens players
-      paddle = Player.paddle playerView
-```
-
-
-
-# Hava
-
-`ballBounceP :: Ball.Ball -> Players.Players -> J.Random -> IO Players.Players`
-
-
-
-![hava](src/images/hava.jpeg)
-
-
-
-## pointer ref  way 
-
-Data in haskell, business logic in haskell
- 
-Java as Controller
-
-
-
-We need to expose haskell *objects* to java. 
-
-
-
-Game of life
-
-```{haskell}
-data Color = Color  {red :: Int,
-                                                             green :: Int,
-                                                             blue :: Int};
-
-data  Cell  = Dead | Alive {color :: Color}
-
-type Row = Array Int Cell
-type Plane = Array Int Row
-
-type GOLState = StablePtr Plane
-
-initEmptyXP:: Int -> Int -> IO GOLState
-initEmptyXP wi hi = newStablePtr $ makePlane wi hi
-
-newStateXP::GOLState -> IO GOLState
-newStateXP state =  ( deRefStablePtr state) >>= (newStablePtr . processPlane)
-
-foreign export java "@static pl.setblack.life.Life.newState" newStateXP
-   ::GOLState->IO GOLState
-```
-
-```{java}
-    public static int newState(int var0) {
-        return ((StablePtr)Runtime.evalIO(new Ap2Upd(TopHandler.runIO(), new Ap2Upd(Main.$fe_newStateXP(), new StablePtr(var0))))).x1;
-    }
-```
-
-
-
-## problems
-
-- lot of imports to write for every  simple java class
-   - this will be fixed thanks to `ffi tool`
-- it took me a while to find out how to pass state between haskell and java
-- other bug found (and resolved)
-- java monad / io monad - not totally intuitive (for a newbie) 
-
-
-
-## Eta vs Frege
-
-
-
-I used Frege very shortly
-
-- **Frege** is more mature compiler
-- Interoperation with Java is easier with Frege
-- Frege will not be close to GHC in the near future
-   - at the semantics level
-   - at the libraries level   
--  Eta provides more tools (gradle plugin, etlas etc.)
-
-
-
-# Eta for you
-
-
-
-## Eta now
-
-Eta version today is 0.8.6b5
-
-
-
-If You think of eta in production soon -> talk to **Typelead**
-
-They want to provide commercial support - ask them for conditions  
-
-
-
-If you are haskell developer that wants to evaluate haskell on JVM
-
-*Try it now!*
-
-
-
- If you are JVM / JavaDeveloper that wants to learn and play with Haskell
-
-*Play now!* 
-
-
-
-# Eta community
-
-
-
-Small
-
-
-
-Great!
-
-
-
-You can help! There are lot of small things to do
-
-
-
-
-Even if You stick to Java 
-
-learning Haskell can help You improve java skills
-
-You may accidentally understand the `M...` word
 
 
